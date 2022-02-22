@@ -1,6 +1,6 @@
 module Torch
 
-using PythonCall: Py, pynew, pycopy!
+using PythonCall: Py, pynew, pycopy!, @pyeval, @pyexec
 
 using ChainRulesCore
 using DLPack

@@ -10,6 +10,7 @@ DLPack = "53c2dc0f-f7d5-43fd-8906-6c0220547083"
 FillArrays = "1a297f60-69ca-5386-bcde-b61e274b549b"
 Functors = "d9f16b24-f501-4c13-a1f2-28368ffc5196"
 PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 Requires = "ae029012-a4dd-5104-9daa-d747884805df"
 
 [compat]

@@ -2,9 +2,11 @@ channels = ["pytorch-nightly"]
 
 [pip.deps]
 functorch = "@ git+https://github.com/pytorch/functorch.git"
-jax = ""
+
 
 [deps]
+protobuf = "<3.19"
+jax = "<0.3"
 ninja = ""
 pytorch = ""
 numpy = ""

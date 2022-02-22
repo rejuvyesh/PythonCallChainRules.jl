@@ -34,6 +34,12 @@ Base.iterate(f::TorchModuleWrapper, state) = iterate(f.params, state)
 
 function TorchModuleWrapper(torch_module)
     Bool(pyisinstance(torch_module, torch.nn.Module)) || error("Not a torch.nn.Module")
+    funmod, params, buffers = functorch.make_functional_with_buffers(torch_module)
+    dtype = params[1].dtype
+    jlparams = map(params) do x
+        DLPack.wrap(x, dlpack.to_dlpack)
+    end
+    return TorchModuleWrapper(funmod, dtype, jlparams, buffers)
 end
 
 function (wrap::TorchModuleWrapper)(args...; kwargs...)

@@ -1,6 +1,6 @@
 module Jax
 
-using PythonCall
+using PythonCall: Py, pynew, pyimport, pycopy!
 using ChainRulesCore
 using DLPack
 using Functors: fmap

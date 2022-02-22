@@ -1,4 +1,4 @@
-using PythonCallChainRules.Torch: TorchModuleWrapper, torch, functorch, dlpack, ispysetup
+using PythonCallChainRules.Torch: TorchModuleWrapper, ispysetup
 
 using Test
 
@@ -9,6 +9,9 @@ if !ispysetup[]
     return
 end
 
+torch = pyimport("torch")
+dlpack = pyimport("torch.utils.dlpack")
+
 device = torch.device("cpu")
 
 @testset "dlpack" begin
@@ -16,6 +19,6 @@ device = torch.device("cpu")
         xto = torch.randn(dims..., device=device)
         xjl = DLPack.wrap(xto, dlpack.to_dlpack)
         @test Tuple(xto.size()) == reverse(size(xjl))
-        @test isapprox(sum(xto.cpu().numpy()), sum(xjl))
+        @test isapprox(pyconvert(Float32, xto.cpu().sum().item()), sum(xjl))
     end
 end
